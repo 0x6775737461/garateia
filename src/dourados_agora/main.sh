@@ -13,9 +13,8 @@ get_news() {
    # por isso fazemos a checagem para executar ou não
    # a função de verificação de tempo.
    test ! -e data/last_acess.txt || last_acess && {
-      echo 'baixando'
-      wget -q --limit-rate=100k -t 3 -P data/ "$url"
-      date '+%s' >> data/last_acess.txt
+      wget -q --limit-rate=100k -t 3 -O data/feed.xml "$url"
+      date '+%s' > data/last_acess.txt
       exit 0
    }
 
